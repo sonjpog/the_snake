@@ -60,9 +60,7 @@ class Apple(GameObject):
     def __init__(self, occupied_cells=None):
         """Инициализация атрибутов яблока."""
         super().__init__(body_color=APPLE_COLOR)
-        if occupied_cells is None:
-            occupied_cells = []
-        self.occupied_cells = occupied_cells  # Создаем атрибут occupied_cells
+        self.occupied_cells = occupied_cells or []
         self.randomize_position()
 
     def randomize_position(self):
@@ -170,7 +168,7 @@ def main():
             occupied_cells = snake.positions[:]
             apple = Apple(occupied_cells)
 
-        if snake.get_head_position() == apple.position:
+        elif snake.get_head_position() == apple.position:
             snake.length += 1
             occupied_cells.append(apple.position)
             apple.randomize_position()
